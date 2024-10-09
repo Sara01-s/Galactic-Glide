@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Data")]
 public class Data : ScriptableObject {
 
-    public float PlayeYPosition = 0.0f;
-    public int PlayerScore = 0;
+    public ReactiveValue<float> PlayeYPosition = new () { Value = 5.0f };
+    public ReactiveValue<int> PlayerScore = new () { Value = 0 };
     
 }
