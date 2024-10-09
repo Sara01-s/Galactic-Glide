@@ -848,7 +848,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press any key
+  m_text: '- Press any key -'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8a29e4ac974e43f4a977e7620844b7f3, type: 2}
   m_sharedMaterial: {fileID: 7862415520373743481, guid: 8a29e4ac974e43f4a977e7620844b7f3, type: 2}
@@ -937,8 +937,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b50bf61fadf9ca409aa0950428807a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_textMeshPro: {fileID: 1918758116}
-  m_tinkleTime: 0.5
+  m_textMeshPro: {fileID: 1918758118}
+  m_tinkleInterval: 1
 --- !u!1 &2060547808
 GameObject:
   m_ObjectHideFlags: 0
@@ -951,6 +951,7 @@ GameObject:
   - component: {fileID: 2060547811}
   - component: {fileID: 2060547810}
   - component: {fileID: 2060547809}
+  - component: {fileID: 2060547813}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1043,6 +1044,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &2060547813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2060547808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b70ee1ed954b8154ca850e25027852ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_mainMenu: {fileID: 1662088531}
+  m_gameplay: {fileID: 146326998}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -1,23 +1,22 @@
 using UnityEngine;
+using TMPro;
+using System;
 
 public class Tinkle : MonoBehaviour {
 
-    [SerializeField] private GameObject m_textMeshPro;
-    [SerializeField] private float m_tinkleTime;
+    public static Action OnKeyPressed;
 
-    private float m_timer;
+    [SerializeField] private TextMeshProUGUI m_textMeshPro;
+    [SerializeField] private float m_tinkleInterval;
 
-    private void Awake() {
-        m_tinkleTime = m_timer;
+    private void Update() {
+        if (Input.anyKeyDown) {
+            OnKeyPressed?.Invoke();
+        }
     }
 
     private void FixedUpdate() {
-        m_timer -= Time.deltaTime;
-
-        if (m_timer <= 0.0f) {
-            m_textMeshPro.SetActive(!m_textMeshPro.activeInHierarchy);
-            m_timer = m_tinkleTime;
-        }
+        m_textMeshPro.color = Time.time % m_tinkleInterval > 0.5f ? Color.white : Color.clear;
     }
 
 }
