@@ -1,9 +1,7 @@
-using UnityEngine;
+public class UnityPlayerInput : IPlayerInput {
 
-public class PlayerInput : IPlayerInput {
-
-    public void SetPlayerYPosition(float newYPosition) {
-
+    public float GetVerticalInput() {
+        return UnityEngine.Input.GetAxis("Vertical");
     }
-    
+
 }
