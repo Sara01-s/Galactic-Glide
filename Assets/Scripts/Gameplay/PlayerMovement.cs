@@ -1,24 +1,47 @@
+using static Unity.Mathematics.math;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
     
-    [SerializeField] private float _minHeight = -10.0f;
-    [SerializeField] private float _maxHeight = 10.0f;
-    [SerializeField] private float _playerYSpeed;
     [SerializeField] private Data _data;
 
-    private IPlayerInput _playerInput;
+    [SerializeField] private Transform _start;
+    [SerializeField] private Transform _end;
 
-    private void Awake() {
-        _playerInput = new UnityPlayerInput();
+    [SerializeField] private float _minHeight = -10.0f;
+    [SerializeField] private float _maxHeight = 10.0f;
+
+    private void OnEnable() {
+        _data.PlayerDy.Subscribe(Move);
+        _data.OnGameStart += IntroducePlayer;
     }
 
-    private void Update() {
-        float playerY = _playerInput.GetVerticalInput() * _playerYSpeed * Time.deltaTime;
-        var playerPosition = new Vector3(0.0f, playerY);
-        
-        transform.position += playerPosition;
-        transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, _minHeight, _maxHeight));
+    private void OnDisable() {
+        _data.PlayerDy.Dispose();
+    }
+
+    public void Move(float dy) {
+        float playerAltitude = lerp(_minHeight, _maxHeight, dy);
+        transform.position = transform.position.withY(playerAltitude);
+    }
+
+    private void IntroducePlayer(StartData startData) {
+        StartCoroutine(IntroducePlayer(startData.PlayerEntranceDurationSec));
+
+        IEnumerator IntroducePlayer(float entranceDurationSec) {
+            float elapsed = 0.0f;
+
+            while (elapsed <= entranceDurationSec) {
+                float t = elapsed / entranceDurationSec;
+                float dx = lerp(_start.position.x, _end.position.x, pow(t, 5.0f));
+
+                transform.position = transform.position.withX(dx);
+
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
+        }
     }
     
     private void OnDrawGizmos() {

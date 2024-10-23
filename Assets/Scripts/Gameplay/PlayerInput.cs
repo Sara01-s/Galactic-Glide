@@ -1,7 +1,11 @@
-public class UnityPlayerInput : IPlayerInput {
+using UnityEngine;
 
-    public float GetVerticalInput() {
-        return UnityEngine.Input.GetAxis("Vertical");
+public class PlayerInput : MonoBehaviour {
+
+    [SerializeField] private Data _data;
+
+    public void SetPlayerDy(float dy) {
+        _data.PlayerDy.Value = dy;
     }
 
 }
