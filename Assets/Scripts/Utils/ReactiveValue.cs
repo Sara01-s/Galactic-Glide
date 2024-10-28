@@ -1,16 +1,16 @@
 using System.Collections.Generic;
 using System;
 
-public sealed class ReactiveValue<T> {
+public sealed class ReactiveValue<T> : IDisposable {
 
     public T Value { 
         get {
             return _value;
-        } 
+        }
         set {
             _value = value;
             OnValueChanged?.Invoke(_value);
-        } 
+        }
     }
 
     private Action<T> OnValueChanged;

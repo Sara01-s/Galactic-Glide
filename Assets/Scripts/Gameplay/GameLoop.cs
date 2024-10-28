@@ -12,10 +12,17 @@ public class GameLoop : MonoBehaviour {
 
     [SerializeField] private StartData _startData;
 
-    private void OnGameStart() {
+    public void StartGame() {
         _data.OnGameStart?.Invoke(_startData);
+		_data.GameStarted = true;
     }
 
+	public void ResetGame() {
+		UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+	}
 
+	private void OnDisable() {
+		_data.Reset();
+	}
 
 }
