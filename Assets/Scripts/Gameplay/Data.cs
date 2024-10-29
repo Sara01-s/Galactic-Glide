@@ -4,6 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Data"), Serializable]
 public class Data : ScriptableObject {
 
+	public Action OnPlayerDeath;
 	public bool PlayerIsFrozen = true;
 	public bool GameStarted = false;
     public Action<StartData> OnGameStart;
